@@ -1,0 +1,16 @@
+(* Test Cases for Part 1*)
+val t1 = F("f", [V("a")]);
+val t2 = F("f", [V("a"), V("a")]);
+val p1 = PRED("p", [t1,t1]);
+val p2 = PRED("p", [t1,t2]);
+val it = isValidForm(p1, SOME([]));
+val it2 = isValidForm(p2, SOME([]));
+
+val p1 = PRED("p",[V("x"), V("y")])
+val p2 = PRED("r",[V("z"), V("y")])
+val p3 = AND(p1,p2)
+val p4 = PRED("q",[V("y"), V("z")])
+val p5 = NOT(EXISTS("y", p3))
+val p6 = OR(p4, p5)
+val p7 = FORALL("x", p6)
+val it = cnf(skolem(prenix(rename(1)(p7)))([]))
